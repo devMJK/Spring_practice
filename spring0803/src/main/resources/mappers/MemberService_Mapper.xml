@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my0803.myapp.persistance.MemberService_Mapper">
+
+<insert id="memberInsert" parameterType="mv">	<!-- id : 메소드 이름 --> <!-- parameterType : 별칭 (mybatis_config.xml에서 지정) -->
+insert into member0803(memberid,memberpwd,membername,memberbirth,membergender,memberphone,memberemail,memberaddr,memberhobby)
+values(#{memberId},#{memberPwd},#{memberName},#{memberBirth},#{memberGender},#{memberPhone},#{memberEmail},#{memberAddr},#{memberHobby})
+</insert>
+<!-- HashMap 타입 : ArrayList(자동으로 순서적으로 숫자 부여)와 같은 창고 형식이지만  HashMap은 이름하고 박스만 담아두고 순서숫자는 부여되지 않는다. 두개 이상 있을 때 묶어서 한번에 보냄 -->
+<select id="memberLogin" parameterType="HashMap" resultType="mv">
+select midx,memberid,membername from member0803 where memberid=#{memberId} and memberpwd=#{memberPwd}
+</select>
+
+<select id="memberLogin2" parameterType="string" resultType="mv">
+select midx,memberid,membername, memberpwd from member0803 where memberid=#{memberId}	<!-- 아이디에 해당되는 암호화된 비밀번호를 가져옴 -->
+</select>
+
+<select id = "memberIdCheck" parameterType="String" resultType="int">
+select count(*) as cnt from member0803 where memberid = #{memberId}
+</select>
+
+<select id = "memberList" resultType="mv">
+select midx, memberid, membername, writeday from member0803 where delyn="N" order by midx desc
+</select>
+
+</mapper>
+
+
+
+
