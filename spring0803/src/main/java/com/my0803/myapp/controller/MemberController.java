@@ -83,7 +83,7 @@ public class MemberController {
 			
 			if (request.getSession().getAttribute("saveUrl") != null) {
 				path = 	(String)request.getSession().getAttribute("saveUrl").toString().substring(request.getContextPath().length()+1);		// (String) 을 사용하여 강제 형변환, toString() 으로 글자를 자름
-				}else {
+			}else {
 				path = "index.jsp";
 				}	
 			}
